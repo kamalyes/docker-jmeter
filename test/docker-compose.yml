@@ -1,10 +1,10 @@
 version: '3'
 
 services:
-  master:
+  jmeter-master:
     image: kamalyes/jmeter:v1.0.0
     command: master
-    container_name: jmeter-master # 容器名称
+    container_name: jmeter-master
     tty: true
     ports:
       - 60000:60000
@@ -13,10 +13,23 @@ services:
     networks:
       - jmeter-network
 
-  server:
+  jmeter-slave1:
     image: kamalyes/jmeter:v1.0.0
     command: server
-    container_name: jmeter-slave # 容器名称
+    container_name: jmeter-slave1
+    tty: true
+    ports:
+      - 1099:1099
+      - 50000:50000
+    networks:
+      - jmeter-network
+    depends_on:
+      - master
+  
+  jmeter-slave2:
+    image: kamalyes/jmeter:v1.0.0
+    command: server
+    container_name: jmeter-slave2
     tty: true
     ports:
       - 1099:1099

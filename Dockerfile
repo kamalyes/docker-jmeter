@@ -129,5 +129,5 @@ RUN    apk update \
 
 # Entrypoint has same signature as "jmeter" command
 WORKDIR	${JMETER_HOME}
-EXPOSE 1099 8778 50000 60000 
+EXPOSE 1099 8778 4000 60000 
 ENTRYPOINT ["entrypoint.sh"]
